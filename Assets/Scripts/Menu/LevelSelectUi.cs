@@ -25,10 +25,11 @@ public class LevelSelectUi : BaseUiScreen
     private void Awake()
     {
         LevelContainer levelContainer = LevelContainer.instance;
-        List<int> levels = levelContainer.LevelList;
+        int levelCount = levelContainer.LevelList.Count;
+        GameData gameData = GameData.Instance;
         GameObject bubblesParent = null;
 
-        for (int i = 0; i < levels.Count; i++)
+        for (int i = 0; i < levelCount; i++)
         {
             if (i % 4 == 0)
             {
@@ -36,7 +37,11 @@ public class LevelSelectUi : BaseUiScreen
             }
 
             UiLevelBubble levelBubble = Instantiate(levelBubblePrefab, bubblesParent.transform);
-            levelBubble.Initialize(i+1, levels[i], LevelBubble_OnClick);
+            levelBubble.Initialize(i, LevelBubble_OnClick);
+            if (i > gameData.MaxUnlockedLevel)
+            {
+                levelBubble.SetActive(false);
+            }
         }
     }
 

@@ -2,19 +2,35 @@ using UnityEngine;
 
 public class MenuUiManager : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private MainMenuUi mainMenu;
     [SerializeField] private SettingsUi settings;
     [SerializeField] private LevelSelectUi levelSelect;
 
+    private GameData gameData;
+
+    #endregion
+    
+    
+
+    #region Unity lifecycle
+
     private void Awake()
     {
+        gameData = GameData.Instance;
         mainMenu.Initialize(UiScreen_OnShowLevelSelect, UiScreen_OnShowSettings, MenuUi_OnExit);
         settings.Initialize(SettingsUi_OnHintClick, UiScreen_OnShowMenu);
         levelSelect.Initialize(LevelSelect_OnLevelClick, UiScreen_OnShowMenu);
         
         UiScreen_OnShowMenu();
     }
+
+    #endregion
+
     
+
+    #region Event handlers
 
     private void UiScreen_OnShowMenu()
     {
@@ -48,12 +64,19 @@ public class MenuUiManager : MonoBehaviour
 
     private void SettingsUi_OnHintClick()
     {
-        //GetHints
+        gameData.HintAmount += 5;
     }
 
 
     private void LevelSelect_OnLevelClick(int levelNumber)
     {
         Debug.Log($"LevelSelected {levelNumber}");
+        gameData.CurrentLevel = levelNumber;
+        
+        //TODO remove later
+        gameData.LevelCompleted();
+        Debug.Log(gameData.MaxUnlockedLevel);
     }
+
+    #endregion
 }

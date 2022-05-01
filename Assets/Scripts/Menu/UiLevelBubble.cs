@@ -9,10 +9,10 @@ public class UiLevelBubble : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private TMP_Text levelNumber;
+    [SerializeField] private TMP_Text levelNumberText;
     [SerializeField] private Button levelButton;
     
-    private int levelScriptable;
+    private int levelNumber;
     private Action<int> onLevelClick;
 
     #endregion
@@ -38,11 +38,16 @@ public class UiLevelBubble : MonoBehaviour
     
     #region Methods
 
-    public void Initialize(int levelNumber, int levelScriptable, Action<int> onLevelClick)
+    public void Initialize(int levelNumber, Action<int> onLevelClick)
     {
-        this.levelNumber.text = levelNumber.ToString();
-        this.levelScriptable = levelScriptable;
+        levelNumberText.text = (levelNumber+1).ToString();
+        this.levelNumber = levelNumber;
         this.onLevelClick = onLevelClick;
+    }
+
+    public void SetActive(bool value)
+    {
+        levelButton.interactable = value;
     }
 
     #endregion
@@ -53,7 +58,7 @@ public class UiLevelBubble : MonoBehaviour
 
     private void LevelButton_OnClick()
     {
-        onLevelClick?.Invoke(levelScriptable);
+        onLevelClick?.Invoke(levelNumber);
     }
 
     #endregion
