@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuUiManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class MenuUiManager : MonoBehaviour
     [SerializeField] private MainMenuUi mainMenu;
     [SerializeField] private SettingsUi settings;
     [SerializeField] private LevelSelectUi levelSelect;
+    [SerializeField] private string playSceneName;
 
     private GameData gameData;
 
@@ -72,10 +74,8 @@ public class MenuUiManager : MonoBehaviour
     {
         Debug.Log($"LevelSelected {levelNumber}");
         gameData.CurrentLevel = levelNumber;
-        
-        //TODO remove later
-        gameData.LevelCompleted();
-        Debug.Log(gameData.MaxUnlockedLevel);
+
+        SceneManager.LoadScene(playSceneName);
     }
 
     #endregion

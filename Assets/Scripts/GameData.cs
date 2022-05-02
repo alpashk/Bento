@@ -14,9 +14,9 @@ public class GameData
 
     private int hintAmount;
     private int maxUnlockedLevel;
-    private int currentLevel;
+    private int currentLevel = 0;
 
-    public Action<int> onHintsUpdated;
+    public Action<int> OnHintsUpdated;
 
     #endregion
     
@@ -44,8 +44,8 @@ public class GameData
         set
         {
             hintAmount = value;
-            onHintsUpdated?.Invoke(value);
-            PlayerPrefs.SetInt(hintsAmountKey, startHints);
+            OnHintsUpdated?.Invoke(value);
+            PlayerPrefs.SetInt(hintsAmountKey, hintAmount);
         }
     }
     

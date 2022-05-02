@@ -2235,6 +2235,7 @@ MonoBehaviour:
   mainMenu: {fileID: 1712532732}
   settings: {fileID: 1273425544}
   levelSelect: {fileID: 1620114520}
+  playSceneName: Gameplay
 --- !u!4 &1010110171
 Transform:
   m_ObjectHideFlags: 0

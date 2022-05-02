@@ -25,7 +25,7 @@ public class LevelSelectUi : BaseUiScreen
     private void Awake()
     {
         LevelContainer levelContainer = LevelContainer.instance;
-        int levelCount = levelContainer.LevelList.Count;
+        int levelCount = levelContainer.LevelCount;
         GameData gameData = GameData.Instance;
         GameObject bubblesParent = null;
 

@@ -25,13 +25,13 @@ public class ConstantUi : MonoBehaviour
     
     private void OnEnable()
     {
-        gameData.onHintsUpdated += GameData_OnHintCountChanged;
+        gameData.OnHintsUpdated += GameData_OnHintCountChanged;
     }
     
 
     private void OnDisable()
     {
-        gameData.onHintsUpdated -= GameData_OnHintCountChanged;
+        gameData.OnHintsUpdated -= GameData_OnHintCountChanged;
     }
     
     #endregion
