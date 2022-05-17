@@ -165,6 +165,11 @@ public class GameMaster : MonoBehaviour
                     x.Shape == dragTarget.TargetShape && x.Taste == dragTarget.TargetTaste);
                 dragTarget.ReceivedPiece = foodPiece;
                 foodPiece.transform.position = dragTarget.transform.position;
+                DragTarget previousPosition = dragTargets.Find(target => target.ReceivedPiece == foodPiece);
+                if (previousPosition != null)
+                {
+                    previousPosition.ReceivedPiece = null;
+                }
                 CheckValidity();
                 return;
             }
